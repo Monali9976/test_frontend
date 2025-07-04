@@ -34,7 +34,7 @@ export default function ChatWindow({ onBack }) {
         }
       ]);
       setFormSent(true);
-    }, 50000); // Reduced to 5 seconds for testing
+    }, 5000); // 5 seconds for testing
   }, [formSent]);
 
   useEffect(() => {
@@ -117,20 +117,20 @@ export default function ChatWindow({ onBack }) {
   return (
     <div
       className="w-full max-w-md mx-auto rounded-2xl shadow-lg bg-white flex flex-col h-screen"
-      style={{ minHeight: '100vh' }}
+      style={{ minHeight: '100vh', maxHeight: '100vh' }} // Explicitly set max height
     >
       {/* Header */}
-      <div className="flex items-center p-4 border-b h-16"> {/* Fixed height for header */}
-        <ArrowLeft onClick={onBack} className="cursor-pointer mr-3" />
-        <img src={logo} alt="Logo" className="w-8 h-8 rounded-full mr-2" />
+      <div className="flex items-center p-2 border-b h-14"> {/* Reduced padding, adjusted height */}
+        <ArrowLeft onClick={onBack} className="cursor-pointer mr-2" />
+        <img src={logo} alt="Logo" className="w-7 h-7 rounded-full mr-2" />
         <h2 className="text-lg font-semibold">Raghu</h2>
       </div>
 
       {/* Chat Messages */}
-      <div className="flex-1 p-4 overflow-y-auto bg-gray-50">
+      <div className="flex-1 p-2 overflow-y-auto bg-gray-50" style={{ minHeight: 0 }}>
         {messages.map((msg, i) => (
-          <div key={i} className={`mb-3 flex ${msg.from === 'user' ? 'justify-end' : 'justify-start'}`}>
-            <div className={`px-4 py-2 rounded-lg text-sm max-w-xs ${msg.from === 'user' ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-800'}`}>
+          <div key={i} className={`mb-2 flex ${msg.from === 'user' ? 'justify-end' : 'justify-start'}`}>
+            <div className={`px-3 py-1 rounded-lg text-sm max-w-xs ${msg.from === 'user' ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-800'}`}>
               <span dangerouslySetInnerHTML={{ __html: formatMessage(msg.text) }} />
             </div>
           </div>
@@ -143,24 +143,24 @@ export default function ChatWindow({ onBack }) {
           e.preventDefault();
           sendMessage();
         }}
-        className="flex p-3 border-t bg-white"
+        className="flex p-2 border-t bg-white"
       >
         <input
           value={input}
           onChange={(e) => setInput(e.target.value)}
-          className="flex-1 border rounded-l-lg px-4 py-2 outline-none text-sm"
+          className="flex-1 border rounded-l-lg px-3 py-1 outline-none text-sm"
           placeholder="Type your message here..."
         />
         <button
           type="submit"
-          className="bg-black text-white px-4 py-2 rounded-r-lg text-sm"
+          className="bg-black text-white px-3 py-1 rounded-r-lg text-sm"
         >
           Send
         </button>
       </form>
 
       {/* Footer */}
-      <div className="text-center text-xs text-gray-500 py-2">
+      <div className="text-center text-xs text-gray-500 p-1">
         Powered by <span className="font-medium text-blue-600">ALPL</span>
       </div>
     </div>
