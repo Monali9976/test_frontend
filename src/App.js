@@ -10,7 +10,7 @@ function App() {
   return (
     <Router>
       {/* <div className="app-container"> */}
-      <div className="app-container" style={{ height: "100%", width: "100%" }}>
+      <div style={{ height: "100%", width: "100%" }}>
         <Routes>
           <Route
             path="/"
