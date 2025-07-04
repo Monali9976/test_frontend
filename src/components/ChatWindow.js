@@ -150,7 +150,7 @@ export default function ChatWindow({ onBack }) {
   };
 
   return (
-    // <div className="w-full max-w-md mx-auto rounded-2xl shadow-lg bg-white overflow-hidden h-[90vh] flex flex-col">
+    <div className="w-full max-w-md mx-auto rounded-2xl shadow-lg bg-white overflow-hidden h-[90vh] flex flex-col">
     <div
   className="w-full h-full max-w-md mx-auto rounded-2xl shadow-lg bg-white overflow-hidden flex flex-col"
   style={{ maxHeight: '100%', height: '100%' }}
