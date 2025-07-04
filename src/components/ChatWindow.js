@@ -34,7 +34,7 @@ export default function ChatWindow({ onBack }) {
         }
       ]);
       setFormSent(true);
-    }, 50000); // 30 seconds
+    }, 5000); // Reduced to 5 seconds for testing
   }, [formSent]);
 
   useEffect(() => {
@@ -116,11 +116,11 @@ export default function ChatWindow({ onBack }) {
 
   return (
     <div
-      className="w-full max-w-md mx-auto rounded-2xl shadow-lg bg-white overflow-auto flex flex-col h-screen"
-      style={{ maxHeight: '100vh' }}
+      className="w-full max-w-md mx-auto rounded-2xl shadow-lg bg-white flex flex-col h-screen"
+      style={{ minHeight: '100vh' }}
     >
       {/* Header */}
-      <div className="flex items-center p-4 border-b">
+      <div className="flex items-center p-4 border-b h-16"> {/* Fixed height for header */}
         <ArrowLeft onClick={onBack} className="cursor-pointer mr-3" />
         <img src={logo} alt="Logo" className="w-8 h-8 rounded-full mr-2" />
         <h2 className="text-lg font-semibold">Raghu</h2>
