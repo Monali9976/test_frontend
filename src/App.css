@@ -7,13 +7,11 @@ body {
   background-position: center;
   background-repeat: repeat;
   color: white;
-  /* min-height: 100vh; */
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
   box-sizing: border-box;
-  height: 100%;
-  width: 100%;
 }
 
 .app-container {
