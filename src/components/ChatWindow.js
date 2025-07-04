@@ -14,7 +14,6 @@ export default function ChatWindow({ onBack }) {
   const [isNameSet, setIsNameSet] = useState(false);
   const [userId, setUserId] = useState("");
 
-
   const formatMessage = (text) => {
     const urlRegex = /(https?:\/\/[^\s]+)/g;
     return text.replace(urlRegex, (url) => {
@@ -22,8 +21,6 @@ export default function ChatWindow({ onBack }) {
     });
   };
 
-
-  // Reset inactivity timer
   const resetInactivityTimer = useCallback(() => {
     if (timeoutRef.current) clearTimeout(timeoutRef.current);
     if (formSent) return;
@@ -45,38 +42,9 @@ export default function ChatWindow({ onBack }) {
     return () => clearTimeout(timeoutRef.current);
   }, [messages, resetInactivityTimer]);
 
-  // Ask for name before starting chat
-  // if (!isNameSet) {
-  //   return (
-  //     <div className="flex flex-col items-center justify-center h-screen bg-gray-100">
-  //       <h2 className="text-xl font-semibold mb-4">👋 Welcome!</h2>
-  //       <p className="mb-2">Before we start, please enter your name:</p>
-  //       <input
-  //         type="text"
-  //         value={userName}
-  //         onChange={(e) => setUserName(e.target.value)}
-  //         placeholder="Your name"
-  //         className="border px-4 py-2 rounded mb-4"
-  //       />
-  //       <button
-  //         onClick={() => {
-  //           if (userName.trim()) {
-  //             setUserId(userName.trim());
-  //             setIsNameSet(true);
-  //           }
-  //         }}
-  //         className="bg-blue-600 text-white px-4 py-2 rounded"
-  //       >
-  //         Start Chat
-  //       </button>
-  //     </div>
-  //   );
-  // }
-
-
   if (!isNameSet) {
     const handleStartChat = (e) => {
-      e.preventDefault(); // prevent page reload
+      e.preventDefault();
       if (userName.trim()) {
         setUserId(userName.trim());
         setIsNameSet(true);
@@ -87,7 +55,6 @@ export default function ChatWindow({ onBack }) {
       <div className="flex flex-col items-center justify-center h-screen bg-gray-100">
         <h2 className="text-xl font-semibold mb-4">👋 Welcome!</h2>
         <p className="mb-2">Before we start, please enter your name:</p>
-
         <form onSubmit={handleStartChat} className="flex flex-col items-center">
           <input
             type="text"
@@ -106,14 +73,14 @@ export default function ChatWindow({ onBack }) {
       </div>
     );
   }
+
   const sendMessage = async () => {
     const messageToSend = input.trim();
     if (!messageToSend) return;
 
-    // Add to UI
     const userMsg = { from: 'user', text: messageToSend };
     setMessages(prev => [...prev, userMsg]);
-    setInput(""); // only clear input after storing
+    setInput("");
     setMessageCount(prev => prev + 1);
     resetInactivityTimer();
 
@@ -123,7 +90,6 @@ export default function ChatWindow({ onBack }) {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ message: input, userId: userId })
       });
-
 
       const data = await res.json();
       const botMsg = { from: 'bot', text: data.reply };
@@ -136,7 +102,6 @@ export default function ChatWindow({ onBack }) {
       ]);
     }
 
-    // Optional: Send form link after 5 chats
     if (messageCount + 1 >= 5 && !formSent) {
       setMessages(prev => [
         ...prev,
@@ -150,12 +115,10 @@ export default function ChatWindow({ onBack }) {
   };
 
   return (
-    // <div className="w-full max-w-md mx-auto rounded-2xl shadow-lg bg-white overflow-hidden h-[90vh] flex flex-col">
     <div
-  className="w-full h-full max-w-md mx-auto rounded-2xl shadow-lg bg-white overflow-hidden flex flex-col"
-  style={{ maxHeight: '100%', height: '100%' }}
->
-
+      className="w-full max-w-md mx-auto rounded-2xl shadow-lg bg-white overflow-auto flex flex-col h-screen"
+      style={{ maxHeight: '100vh' }}
+    >
       {/* Header */}
       <div className="flex items-center p-4 border-b">
         <ArrowLeft onClick={onBack} className="cursor-pointer mr-3" />
@@ -167,33 +130,17 @@ export default function ChatWindow({ onBack }) {
       <div className="flex-1 p-4 overflow-y-auto bg-gray-50">
         {messages.map((msg, i) => (
           <div key={i} className={`mb-3 flex ${msg.from === 'user' ? 'justify-end' : 'justify-start'}`}>
-            <div className={`px-4 py-2 rounded-lg text-sm max-w-xs ${msg.from === 'user' ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-800'
-              }`}>
+            <div className={`px-4 py-2 rounded-lg text-sm max-w-xs ${msg.from === 'user' ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-800'}`}>
               <span dangerouslySetInnerHTML={{ __html: formatMessage(msg.text) }} />
             </div>
           </div>
         ))}
       </div>
 
-      {/* Input Box
-      <div className="flex p-3 border-t bg-white">
-        <input
-          value={input}
-          onChange={e => setInput(e.target.value)}
-          className="flex-1 border rounded-l-lg px-4 py-2 outline-none text-sm"
-          placeholder="Type your message here..."
-        />
-        <button
-          onClick={sendMessage}
-          className="bg-black text-white px-4 py-2 rounded-r-lg text-sm"
-        >
-          Send
-        </button>
-      </div> */}
-
+      {/* Input Box */}
       <form
         onSubmit={(e) => {
-          e.preventDefault(); // prevent page reload
+          e.preventDefault();
           sendMessage();
         }}
         className="flex p-3 border-t bg-white"
@@ -212,12 +159,10 @@ export default function ChatWindow({ onBack }) {
         </button>
       </form>
 
-
       {/* Footer */}
       <div className="text-center text-xs text-gray-500 py-2">
         Powered by <span className="font-medium text-blue-600">ALPL</span>
       </div>
     </div>
   );
-
 }
