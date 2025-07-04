@@ -34,7 +34,7 @@ export default function ChatWindow({ onBack }) {
         }
       ]);
       setFormSent(true);
-    }, 5000); // Reduced to 5 seconds for testing
+    }, 50000); // Reduced to 5 seconds for testing
   }, [formSent]);
 
   useEffect(() => {
