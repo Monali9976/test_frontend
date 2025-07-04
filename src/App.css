@@ -16,9 +16,8 @@ body {
 
 .app-container {
   width: 100%;
-  max-width: 1000px;
+  min-height: 100vh; /* Allow full height */
   background: rgba(0, 0, 0, 0.6);
-  /* slight black overlay */
   padding: 30px;
   border-radius: 12px;
   box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
