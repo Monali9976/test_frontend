@@ -141,7 +141,7 @@ export default function ChatWindow({ onBack }) {
         {messages.map((msg, i) => (
           <div
             key={i}
-            className={`mb-6 flex ${
+            className={`mb-2 flex ${
               msg.from === "user" ? "justify-end" : "justify-start"
             }`}
           >
