@@ -114,59 +114,55 @@ export default function ChatWindow({ onBack }) {
     }
   };
 
-  return (
-
-
-<div
-  className="w-full h-full max-w-md mx-auto rounded-2xl shadow-lg bg-white flex flex-col"
-  style={{ height: '100%', maxHeight: '100%' }}
->
-
-      {/* Header */}
-      <div className="flex items-center p-2 border-b h-14"> {/* Reduced padding, adjusted height */}
-        <ArrowLeft onClick={onBack} className="cursor-pointer mr-2" />
-        <img src={logo} alt="Logo" className="w-7 h-7 rounded-full mr-2" />
-        <h2 className="text-lg font-semibold">Raghu</h2>
-      </div>
-
-      {/* Chat Messages */}
-      <div  className="flex-1 overflow-y-auto bg-gray-50"
-  style={{ minHeight: 0 }}>
-        {messages.map((msg, i) => (
-          <div key={i} className={`mb-2 flex ${msg.from === 'user' ? 'justify-end' : 'justify-start'}`}>
-            <div className={`px-3 py-1 rounded-lg text-sm max-w-xs ${msg.from === 'user' ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-800'}`}>
-              <span dangerouslySetInnerHTML={{ __html: formatMessage(msg.text) }} />
-            </div>
-          </div>
-        ))}
-      </div>
-
-      {/* Input Box */}
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          sendMessage();
-        }}
-        className="flex p-2 border-t bg-white"
-      >
-        <input
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          className="flex-1 border rounded-l-lg px-3 py-1 outline-none text-sm"
-          placeholder="Type your message here..."
-        />
-        <button
-          type="submit"
-          className="bg-black text-white px-3 py-1 rounded-r-lg text-sm"
-        >
-          Send
-        </button>
-      </form>
-
-      {/* Footer */}
-      <div className="text-center text-xs text-gray-500 p-1">
-        Powered by <span className="font-medium text-blue-600">ALPL</span>
-      </div>
+ return (
+  <div
+    className="w-full h-full max-w-md mx-auto rounded-2xl shadow-lg bg-white flex flex-col"
+    style={{ height: "100%", maxHeight: "100%" }}
+  >
+    {/* Header */}
+    <div className="flex items-center p-2 border-b h-14">
+      <ArrowLeft onClick={onBack} className="cursor-pointer mr-2" />
+      <img src={logo} alt="Logo" className="w-7 h-7 rounded-full mr-2" />
+      <h2 className="text-lg font-semibold">Raghu</h2>
     </div>
-  );
-}
+
+    {/* Chat Messages */}
+    <div className="flex-1 overflow-y-auto bg-gray-50" style={{ minHeight: 0 }}>
+      {messages.map((msg, i) => (
+        <div key={i} className={`mb-2 flex ${msg.from === 'user' ? 'justify-end' : 'justify-start'}`}>
+          <div className={`px-3 py-1 rounded-lg text-sm max-w-xs ${msg.from === 'user' ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-800'}`}>
+            <span dangerouslySetInnerHTML={{ __html: formatMessage(msg.text) }} />
+          </div>
+        </div>
+      ))}
+    </div>
+
+    {/* Input */}
+    <form
+      onSubmit={(e) => {
+        e.preventDefault()
+        sendMessage()
+      }}
+      className="flex p-2 border-t bg-white"
+    >
+      <input
+        value={input}
+        onChange={(e) => setInput(e.target.value)}
+        className="flex-1 border rounded-l-lg px-3 py-1 outline-none text-sm"
+        placeholder="Type your message here..."
+      />
+      <button
+        type="submit"
+        className="bg-black text-white px-3 py-1 rounded-r-lg text-sm"
+      >
+        Send
+      </button>
+    </form>
+
+    {/* Footer */}
+    <div className="text-center text-xs text-gray-500 p-1">
+      Powered by <span className="font-medium text-blue-600">ALPL</span>
+    </div>
+  </div>
+)
+      }
