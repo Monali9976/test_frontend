@@ -130,7 +130,8 @@ export default function ChatWindow({ onBack }) {
       </div>
 
       {/* Chat Messages */}
-      <div className="flex-1 p-2 overflow-y-auto bg-gray-50" style={{ minHeight: 0 }}>
+      <div  className="flex-1 overflow-y-auto bg-gray-50"
+  style={{ minHeight: 0 }}>
         {messages.map((msg, i) => (
           <div key={i} className={`mb-2 flex ${msg.from === 'user' ? 'justify-end' : 'justify-start'}`}>
             <div className={`px-3 py-1 rounded-lg text-sm max-w-xs ${msg.from === 'user' ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-800'}`}>
