@@ -115,10 +115,13 @@ export default function ChatWindow({ onBack }) {
   };
 
   return (
-    <div
-      className="w-full max-w-md mx-auto rounded-2xl shadow-lg bg-white flex flex-col h-screen"
-      style={{ minHeight: '100vh', maxHeight: '100vh' }} // Explicitly set max height
-    >
+
+
+<div
+  className="w-full h-full max-w-md mx-auto rounded-2xl shadow-lg bg-white flex flex-col"
+  style={{ height: '100%', maxHeight: '100%' }}
+>
+
       {/* Header */}
       <div className="flex items-center p-2 border-b h-14"> {/* Reduced padding, adjusted height */}
         <ArrowLeft onClick={onBack} className="cursor-pointer mr-2" />
