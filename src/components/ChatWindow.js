@@ -52,7 +52,7 @@ export default function ChatWindow({ onBack }) {
     };
 
     return (
-      <div className="flex flex-col items-center justify-center h-screen bg-gray-100">
+     <div className="flex flex-col items-center justify-center h-full bg-gray-100">
         <h2 className="text-xl font-semibold mb-4">👋 Welcome!</h2>
         <p className="mb-2">Before we start, please enter your name:</p>
         <form onSubmit={handleStartChat} className="flex flex-col items-center">
