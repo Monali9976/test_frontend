@@ -117,7 +117,7 @@ export default function ChatWindow({ onBack }) {
  return (
   <div
     className="w-full h-full max-w-md mx-auto rounded-2xl shadow-lg bg-white flex flex-col"
-    style={{ height: "100%", maxHeight: "100%" }}
+    style={{ height: "100%", maxHeight: "100%",overflow: "hidden"  }}
   >
     {/* Header */}
     <div className="flex items-center p-2 border-b h-14">
