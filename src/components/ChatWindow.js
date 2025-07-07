@@ -35,7 +35,7 @@ export default function ChatWindow({ onBack }) {
         },
       ])
       setFormSent(true)
-    }, 5000)
+    }, 50000)
   }, [formSent])
 
   useEffect(() => {
