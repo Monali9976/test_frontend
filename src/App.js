@@ -10,7 +10,8 @@ function App() {
   return (
     <Router>
       {/* <div className="app-container"> */}
-      <div style={{ height: "100%", width: "100%" }}>
+     <div style={{ width: "100%", height: "100%", overflow: "hidden" }}>
+
         <Routes>
           <Route
             path="/"
