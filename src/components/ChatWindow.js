@@ -114,23 +114,23 @@ export default function ChatWindow({ onBack }) {
     }
   };
 
- return (
+return (
   <div
     className="w-full h-full max-w-md mx-auto rounded-2xl shadow-lg bg-white flex flex-col"
-    style={{ height: "100%", maxHeight: "100%",overflow: "hidden"  }}
+    style={{ height: "100%", maxHeight: "100%" }}
   >
-    {/* Header */}
-    <div className="flex items-center p-2 border-b h-14">
+    {/* Header (60px) */}
+    <div className="flex items-center p-2 border-b" style={{ height: 60 }}>
       <ArrowLeft onClick={onBack} className="cursor-pointer mr-2" />
       <img src={logo} alt="Logo" className="w-7 h-7 rounded-full mr-2" />
       <h2 className="text-lg font-semibold">Raghu</h2>
     </div>
 
-    {/* Chat Messages */}
-   <div
-  className="flex-1 overflow-y-auto bg-gray-50"
-  style={{ minHeight: 0, maxHeight: "100%" }}
->
+    {/* Chat Message Area (flex-grow: 1) */}
+    <div
+      className="flex-1 overflow-y-auto bg-gray-50"
+      style={{ minHeight: 0 }}
+    >
       {messages.map((msg, i) => (
         <div key={i} className={`mb-2 flex ${msg.from === 'user' ? 'justify-end' : 'justify-start'}`}>
           <div className={`px-3 py-1 rounded-lg text-sm max-w-xs ${msg.from === 'user' ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-800'}`}>
@@ -140,13 +140,14 @@ export default function ChatWindow({ onBack }) {
       ))}
     </div>
 
-    {/* Input */}
+    {/* Input (50px) */}
     <form
       onSubmit={(e) => {
         e.preventDefault()
         sendMessage()
       }}
       className="flex p-2 border-t bg-white"
+      style={{ height: 50 }}
     >
       <input
         value={input}
@@ -162,10 +163,13 @@ export default function ChatWindow({ onBack }) {
       </button>
     </form>
 
-    {/* Footer */}
-    <div className="text-center text-xs text-gray-500 p-1">
+    {/* Footer (30px) */}
+    <div
+      className="text-center text-xs text-gray-500"
+      style={{ height: 30 }}
+    >
       Powered by <span className="font-medium text-blue-600">ALPL</span>
     </div>
   </div>
-)
+);
       }
